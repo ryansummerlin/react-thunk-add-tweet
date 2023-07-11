@@ -14,4 +14,13 @@ router.get(
   })
 );
 
+router.post(
+  '/post',
+  asyncHandler(async (req, res) => {
+    const tweet = await req.body;
+    res.statusCode = 201;
+    res.json(tweet);
+  })
+)
+
 module.exports = router;
