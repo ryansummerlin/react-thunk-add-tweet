@@ -21,6 +21,6 @@ router.post(
     res.statusCode = 201;
     res.json(tweet);
   })
-)
+);
 
 module.exports = router;

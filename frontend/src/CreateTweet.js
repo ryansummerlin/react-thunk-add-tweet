@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllTweets } from './store/tweet';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { postTweetAsync } from './store/tweet';
 
 const CreateTweet = () => {
     const [tweet, setTweet] = useState('');
@@ -14,7 +14,10 @@ const CreateTweet = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (tweet.length > 0) {
-            // this should post the tweet
+            dispatch(postTweetAsync(tweet));
+            setTweet('');
+        } else {
+           window.alert('Tweet cannot be blank!');
         }
     }
 
@@ -23,9 +26,10 @@ const CreateTweet = () => {
       <div>
         <input
             onChange={handleChange}
+            value={tweet}
         />
         <button
-            onSubmit={handleSubmit}
+            onClick={handleSubmit}
         >
             Post Tweet
         </button>
